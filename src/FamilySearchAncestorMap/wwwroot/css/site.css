@@ -1,0 +1,181 @@
+﻿body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0;
+    padding-right: 0;
+    margin: auto;
+}
+
+h4{
+    text-decoration:underline;
+}
+
+/* Override full screen to show the whole thing*/
+@media (min-width: 1200px) {
+    .container {
+        width: 100%;
+    }
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.centerEverything {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.flex-center {
+    align-self: auto;
+}
+
+#appSection {
+    padding-left: 0.5rem;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.flex-columns {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-item {
+    padding-top: 5px;
+}
+
+.flex-20 {
+    flex: 1 1 20%;
+}
+
+.flex-30 {
+    flex: 1 1 30%;
+}
+
+.flex-70 {
+    flex: 1 1 70%;
+}
+
+.flex-80 {
+    flex: 1 1 80%;
+}
+
+.flex-right {
+    justify-content: flex-end;
+}
+
+#appSection ul {
+    padding-left: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.results {
+    border: 1px solid #808080;
+}
+
+.person-name {
+    font-weight: 500;
+    font-size: large;
+    max-width: 350px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.person-detail {
+    font-weight: 300;
+    font-size: smaller;
+    color: #c1c1c1;
+}
+
+.person-key {
+    font-weight: 300;
+    font-size: small;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.hoverme:hover {
+    background-color: aliceblue;
+}
+
+/*.search {
+    width: 400px;
+}*/
+
+
+/* Map css */
+.map {
+    position: relative;
+    overflow: hidden;
+}
+
+.layer {
+    position: absolute;
+}
+
+.tile {
+    pointer-events: none;
+    position: absolute;
+    width: 256px;
+    height: 256px;
+}
+
+.info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.svg-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    /*width: 60px;					
+    height: 28px;*/
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
