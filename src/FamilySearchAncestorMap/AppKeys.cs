@@ -9,7 +9,7 @@ namespace FamilySearchAncestorMap
     {
 		public string GoogleApiKey { get; set; }
 		public string Url { get; set; }
-		public Gedcomx.Api.Lite.Core.Environment Environment { get; set; }
+		public Gedcomx.Api.Lite.Environment Environment { get; set; }
 		public string FSKey { get; set; }
 	}
 }

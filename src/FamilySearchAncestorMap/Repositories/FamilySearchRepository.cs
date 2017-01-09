@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FamilySearchAncestorMap.Models;
-using Gedcomx.Api.Lite.Core;
+using Gedcomx.Api.Lite;
 using Microsoft.Extensions.Options;
 
 namespace FamilySearchAncestorMap
@@ -33,7 +33,7 @@ namespace FamilySearchAncestorMap
 			var encoded = Uri.EscapeDataString(searchString);
 
 			// Pass in the auth token to our familysearch api
-			var ft = new FamilySearchSDK(authToken, _config.Value.Environment);
+			var ft = new FamilySearchSDK(authToken, "NotPassed", "FamilySearchAncestorMap.Core", "1.0.0", _config.Value.Environment);
 			var searchResult = ft.Get("/platform/tree/search?q=" + encoded, MediaType.X_GEDCOMX_ATOM_JSON).Result;
 
 			var list = new List<Person>();
@@ -58,12 +58,12 @@ namespace FamilySearchAncestorMap
 			// TODO: https://familysearch.org/developers/docs/api/tree/Ancestry_resource
 			// Add personDetails as a parameter
 
-			var ft = new FamilySearchSDK(authToken, _config.Value.Environment);
-			var anc = ft.Get("/platform/tree/ancestry?person=" + personId).Result;
-			foreach (var p in anc.persons)
+			var ft = new FamilySearchSDK(authToken, "NotPassed", "FamilySearchAncestorMap.Core", "1.0.0", _config.Value.Environment);
+			var anc = ft.Get("/platform/tree/ancestry?person=" + personId + "&personDetails").Result;
+			foreach (var person in anc.persons)
 			{
-				var data = ft.Get("/platform/tree/persons/" + p.id).Result;
-				var person = data.persons[0];
+				//var data = ft.Get("/platform/tree/persons/" + p.id).Result;
+				//var person = data.persons[0];
 				list.Add(new Person()
 				{
 					Id = person.id,
@@ -74,6 +74,22 @@ namespace FamilySearchAncestorMap
 					DeathAddress = person.display.deathPlace,
 				});
 			}
+
+			//var anc = ft.Get("/platform/tree/ancestry?person=" + personId).Result;
+			//foreach (var p in anc.persons)
+			//{
+			//	var data = ft.Get("/platform/tree/persons/" + p.id).Result;
+			//	var person = data.persons[0];
+			//	list.Add(new Person()
+			//	{
+			//		Id = person.id,
+			//		Name = person.display.name,
+			//		Birth = person.display.birthPlace + " on " + person.display.birthDate,
+			//		Death = person.display.deathPlace + " on " + person.display.deathDate,
+			//		BirthAddress = person.display.birthPlace,
+			//		DeathAddress = person.display.deathPlace,
+			//	});
+			//}
 
 			return list;
 		}

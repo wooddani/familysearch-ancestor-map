@@ -27,6 +27,7 @@
                 <div class="flex-item">Given Name:<input id="givenName" type="text" /></div>
                 <div class="flex-item flex-right">
                     <button class="btn btn-default" id="search" onclick="onSearch()">Search</button>
+                    <button class="btn btn-default" id="search" onclick="logout()">Logout</button>
                 </div>
             </div>
         </div>
@@ -49,9 +50,11 @@
     <script src="https://unpkg.com/fs-js-lite@latest/dist/FamilySearch.min.js"></script>
     <script>
 
+        // TOOD: console.log('@Model');
+
         // refer to https://github.com/FamilySearch/fs-js-lite
         var fs = new FamilySearch({
-            environment: '@Model.Value.Environment.ToString().ToLower()',
+            environment: 'production',
             appKey: '@Model.Value.FSKey',
             redirectUri: '@Model.Value.Url',
             saveAccessToken: true,
@@ -74,6 +77,11 @@
 
         function login() {
             fs.oauthRedirect();
+        }
+
+        function logout() {
+            Cookies.remove('FS_AUTH_TOKEN');
+            window.location.href = window.location.href.split('?')[0];
         }
 
         function drawPage(showapp) {
@@ -284,7 +292,7 @@
                     }
 
                     zoomed();
-                    alert("Zoom out")
+                    //alert("Zoom out")
                 })
                 .fail(function (error) {
                     alert("An error occured. Please try another.");
